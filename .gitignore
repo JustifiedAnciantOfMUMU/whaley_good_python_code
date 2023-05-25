@@ -112,6 +112,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.code-workspace
 .env
 .venv
 env/
@@ -119,6 +120,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+whales_venv/
 
 # Spyder project settings
 .spyderproject
