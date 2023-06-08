@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"type":"text","text":"Thesis","id":"f5b58d44603df57e","x":-162,"y":-4,"width":250,"height":60},
+		{"type":"text","text":"NARW","id":"e0e6d52312b0e263","x":-840,"y":-400,"width":250,"height":60},
+		{"id":"e1efbd298c986ace","x":-940,"y":-760,"width":400,"height":180,"type":"file","file":"General.canvas"}
+	],
+	"edges":[
+		{"id":"7bf1698caa4f2623","fromNode":"f5b58d44603df57e","fromSide":"left","toNode":"e0e6d52312b0e263","toSide":"right"},
+		{"id":"c56fd451b0cd432a","fromNode":"e0e6d52312b0e263","fromSide":"top","toNode":"e1efbd298c986ace","toSide":"bottom"}
+	]
+}

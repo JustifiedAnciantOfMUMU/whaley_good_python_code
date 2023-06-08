@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"type":"text","text":"Background","id":"ac2b0c562f92af9f","x":-207,"y":-381,"width":250,"height":60},
+		{"id":"3c631efc55ad99b0","x":-680,"y":-900,"width":400,"height":400,"type":"file","file":"Whales/General/Brillant, S., Vanderlaan, A., Rangeley, R., & Taggart, C. (2015). Quantitative estimates of the movement and distribution of North Atlantic right whales along the northeast coast of North America. Endangered Species Research.md"},
+		{"id":"f9f56f8930a08493","x":60,"y":-1000,"width":400,"height":400,"type":"file","file":"Whales/General/Mullen, K. A., & Peterson, M. L. (2013). Developing an acoustic method for reducing north atlantic right whale (eubalaena glacialis) ship strike mortality along the united states eastern seaboard (dissertation).md"}
+	],
+	"edges":[
+		{"id":"aa8414e029d74229","fromNode":"ac2b0c562f92af9f","fromSide":"top","toNode":"3c631efc55ad99b0","toSide":"right"},
+		{"id":"e527273d8568584d","fromNode":"ac2b0c562f92af9f","fromSide":"top","toNode":"f9f56f8930a08493","toSide":"left"}
+	]
+}
