@@ -1,4 +1,7 @@
-import matplotlib.pyplot as plt, pandas as pd, openpyxl
+import matplotlib.pyplot as plt, pandas as pd, openpyxl, sys, os
+
+sys.path.append(os.getcwd())
+from Config.import_config import ConfigDict
 
 def ExtractRows(filepath):
     excel_file = pd.ExcelFile(filepath)
@@ -9,9 +12,10 @@ def ExtractRows(filepath):
             data_dict[index] = row.to_dict()
     return data_dict
 
-
+class KirsebomDatabase():
+    def __init__(self, path) -> None:
+        pass
 
 if __name__ == '__main__':
-    annotations = ExtractRows(r'C:\Users\Jon\Documents\UNI\Thesis\annotations.xlsx')
-    bouy_id     = ExtractRows(r'C:\Users\Jon\Documents\UNI\Thesis\buoydata.xlsx')
-    print('done :)')
+    ## Kirsebom
+    pass
