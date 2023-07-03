@@ -4,7 +4,7 @@ sys.path.append(os.getcwd())
 from Libs.Tools.Create_config_file import create_config_file
 
 class ConfigDict():
-    config_filepath = os.getcwd() + r"/Config/config.json"
+    config_filepath = os.getcwd() + r"\Config\config.json"
 
     def __init__(self) -> None:
         self.check_file_exists()

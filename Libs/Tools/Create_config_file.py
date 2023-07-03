@@ -5,9 +5,8 @@ def create_config_file():
 
     # Define the configuration data
     config_data = {
-        "Kirsebom_dnn_dataset": "", # https://www.frdr-dfdr.ca/repo/dataset/4a3113e6-1d58-6bb4-aaf2-a9adf75165be
-        "": "",
-        "": ""
+        "dataset_from_kiresbom": r"E:/Thesis/Datasets/Kiresbom_dataset", # https://www.frdr-dfdr.ca/repo/dataset/4a3113e6-1d58-6bb4-aaf2-a9adf75165be
+        "kirsebom_data": r"E:/Thesis/Datasets/Kiresbom_data/data"
     }
 
     # Write the configuration data to the file
