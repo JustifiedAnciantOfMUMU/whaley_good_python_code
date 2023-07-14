@@ -20,11 +20,10 @@ class KirsebomDatabase():
         for cat in dataset_catagories:
             self._validate_folder_path(os.path.join(self.dataset_dir, cat))
 
-        #for folder in train_paths:
-        #    self._extract_folder(self.data_dir + folder, 1)
-        #for folder in val_paths:
-        #    self._extract_folder(self.data_dir + folder, 1)
-
+        for folder in train_paths:
+            self._extract_folder(self.data_dir + folder, 1)
+        for folder in val_paths:
+            self._extract_folder(self.data_dir + folder, 1)
         self._extract_folder(self.data_dir + r'/clips/dataset_C/train', 4)
 
     def _extract_folder(self, folder_path, val_col=1):
@@ -43,9 +42,10 @@ class KirsebomDatabase():
             _denoised_spectrogram = Spectrogram().denoise_median(_spectrogram_log)
             if _dict[file] == str(1):
                 Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, (self.dataset_dir + '/call'), self._get_file_name(file, _dict[file]))
+                #Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, (self.dataset_dir + '/call'), file[:-4])
             else:
-                #Spectrogram().plot_spectrogram(t, f, _denoised_spectrogram)
                 Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, (self.dataset_dir + '/no_call'), self._get_file_name(file, _dict[file]))
+                #Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, (self.dataset_dir + '/no_call'), file[:-4])
 
 
     @staticmethod
@@ -86,7 +86,7 @@ class KirsebomDatabase():
 
     @staticmethod
     def _get_file_name(wav_name, classification):
-        file_name =  wav_name[:-4] + '_' + classification + '.jpg'
+        file_name =  wav_name[:-4] + '_' + classification + '.png'
         return file_name
 
     

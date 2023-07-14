@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md",
+                "file": "Detection/Spectogram corrilation/Sirovic.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md",
+                "file": "Detection/Spectogram corrilation/Sirovic.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md",
+                "file": "Detection/Spectogram corrilation/Sirovic.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md"
+                "file": "Detection/Spectogram corrilation/Sirovic.md"
               }
             }
           }
@@ -161,8 +161,10 @@
   },
   "active": "4a1f6ed19eb7ac00",
   "lastOpenFiles": [
-    "Sonobouys/Data Calibration.md",
+    "Detection/DNN/Adapting deep learning models to new acoustic envirmoments.md",
+    "Detection/Spectogram corrilation/Sirovic.md",
     "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md",
+    "Sonobouys/Data Calibration.md",
     "Detection/Spectogram corrilation",
     "Detection/DNN",
     "Whales/General/MHodul - Individual North Atlantic right whales identifiedfrom space.md",

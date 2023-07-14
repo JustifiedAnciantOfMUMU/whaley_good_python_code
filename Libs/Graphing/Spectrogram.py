@@ -39,7 +39,8 @@ class Spectrogram():
     def save_spectrogram(t, f, spectrogram_data, dir, filename):
         plt.ioff()
         fig = plt.figure(frameon=False)
-        fig.set_size_inches(10, 8)
+        fig.set_size_inches(5, 4)
+        #print(fig.dpi)
         ax = fig.add_axes([0, 0, 1, 1])
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
@@ -54,6 +55,7 @@ class Spectrogram():
 
 
 if __name__ == '__main__':
+
     dir = os.getcwd()
     #f, t, _spectrogram = Spectrogram().create_spectrgram((dir + '\\Test Calls\\moan_ex1.wav'))
     f, t, _spectrogram = Spectrogram().create_spectrgram(r'E:\Thesis\Datasets\Kiresbom_data\data\clips\dataset_A\val\audio\A_149.wav')
