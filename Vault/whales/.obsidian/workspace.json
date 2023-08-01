@@ -23,11 +23,14 @@
             "id": "4a1f6ed19eb7ac00",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Detection/Spectogram corrilation/Sirovic.md",
-                "mode": "source",
-                "source": false
+                "file": "General.canvas",
+                "viewState": {
+                  "x": -110,
+                  "y": -660.5,
+                  "zoom": -0.8744691179161412
+                }
               }
             }
           }
@@ -98,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Detection/Spectogram corrilation/Sirovic.md",
+                "file": "General.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Detection/Spectogram corrilation/Sirovic.md",
+                "file": "General.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Detection/Spectogram corrilation/Sirovic.md"
+                "file": "General.canvas"
               }
             }
           }
@@ -161,17 +164,17 @@
   },
   "active": "4a1f6ed19eb7ac00",
   "lastOpenFiles": [
-    "Detection/DNN/Adapting deep learning models to new acoustic envirmoments.md",
+    "Main.canvas",
     "Detection/Spectogram corrilation/Sirovic.md",
     "Detection/DNN/Performance of a deep neural network at detecting North Atlantic right whale upcalls.md",
+    "Detection/DNN/Adapting deep learning models to new acoustic envirmoments.md",
     "Sonobouys/Data Calibration.md",
+    "General.canvas",
     "Detection/Spectogram corrilation",
     "Detection/DNN",
     "Whales/General/MHodul - Individual North Atlantic right whales identifiedfrom space.md",
     "Whales/General/Mullen, K. A., & Peterson, M. L. (2013). Developing an acoustic method for reducing north atlantic right whale (eubalaena glacialis) ship strike mortality along the united states eastern seaboard (dissertation).md",
     "Whales/General/Brillant, S., Vanderlaan, A., Rangeley, R., & Taggart, C. (2015). Quantitative estimates of the movement and distribution of North Atlantic right whales along the northeast coast of North America. Endangered Species Research.md",
-    "General.canvas",
-    "Main.canvas",
     "Whales/Calls",
     "Whales/General",
     "Sonobouys",

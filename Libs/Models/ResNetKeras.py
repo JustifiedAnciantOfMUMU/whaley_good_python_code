@@ -56,7 +56,7 @@ class resnet_base():
       filepath = os.getcwd() + r'\Libs\Models\Trained_models/' + self.model_name
       self._build()
       train_set, validation_set = self._prep_dataset(dataset_dir)
-      self.model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy',metrics=['accuracy'])
+      self.model.compile(optimizer=Adam(), loss='binary_crossentropy',metrics=['accuracy'])
       #Stop once overfitting starts to occur
       #es=EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=4)
       #Save the best model
@@ -65,7 +65,7 @@ class resnet_base():
     
     def predict(self, file_path):
       image = Image.open(file_path)
-      image_resized = image.resize((500, 400))
+      image_resized = image.resize((224, 224))
       #image_array = np.expand_dims(np.array(image_resized), axis=0)
       image=np.expand_dims(image_resized,axis=0)
       model_pred= self.model.predict(image)

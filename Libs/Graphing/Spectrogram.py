@@ -15,6 +15,13 @@ class Spectrogram():
         return spectrogram(audio_data, fs=sample_rate, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
     
     @staticmethod
+    def create_spectrgram_from_bufer(buffer, sample_rate, window_size=0.256, nfft=3050):
+        nperseg = int (window_size * sample_rate)
+        noverlap = (nperseg * 0.88)
+        window = np.hamming(nperseg)
+        return spectrogram(buffer, fs=sample_rate, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
+
+    @staticmethod
     def denoise_median(spectrogram_data):
         median = np.median(spectrogram_data)
         spectrogram_data_median = spectrogram_data- median #subtract medium of spectogram 
@@ -29,17 +36,17 @@ class Spectrogram():
         plt.figure()
         plt.pcolormesh(t, f, spectrogram_data, shading='auto')
         plt.xlabel('Time (s)'), plt.ylabel('Frequency (Hz)')
-        plt.ylim(0, 400)
+        plt.ylim(0, 1000)
         plt.colorbar(label='Power Spectral Density (dB/Hz)')
         plt.title('Spectrogram')
         plt.show()
-        plt.close('all')
+        #plt.close('all')
 
     @staticmethod
     def save_spectrogram(t, f, spectrogram_data, dir, filename):
         plt.ioff()
         fig = plt.figure(frameon=False)
-        fig.set_size_inches(5, 4)
+        fig.set_size_inches(2.24, 2.24)
         #print(fig.dpi)
         ax = fig.add_axes([0, 0, 1, 1])
         ax.spines['top'].set_visible(False)
