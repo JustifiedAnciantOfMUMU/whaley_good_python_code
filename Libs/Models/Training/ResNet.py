@@ -47,6 +47,7 @@ def csv_feature_generator(inputPath, bs, mode="train"):
 
 config_dict = ConfigDict().dict
 
+#replace
 trainPath = config_dict['resnet50_features_from_kiresbom'] + '/train_dataset.csv'
 valPath = config_dict['resnet50_features_from_kiresbom'] + '/val_dataset.csv'
 
@@ -69,7 +70,7 @@ model.compile(optimizer=Adam(), loss='binary_crossentropy',metrics=['accuracy'])
 model_path = os.getcwd() + r'\Libs\Models\Trained_models/' + model_name
 mc = ModelCheckpoint(model_path, monitor='val_accuracy', mode='max')
 
-H = model.fit(trainGen, validation_data=valGen, epochs=20, callbacks=[mc])
+H = model.fit(trainGen, steps_per_epoch=totalTrain, validation_data=valGen, validation_steps=totalVal, epochs=20, callbacks=[mc])
 print(H)
 
 Done()

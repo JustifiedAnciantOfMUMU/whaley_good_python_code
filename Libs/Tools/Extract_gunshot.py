@@ -32,6 +32,7 @@ for file in files:
             pass
 
 i=0
+log = []
 for event in events:
     audio_filepath = config_dict['NOPP_Gunshot_data'] + r'/SBNMS_' + event['file_name'][6:14] + '_' + event['file_timestamp'] + '.wav'
     sample_rate, audio_data = wavfile.read(audio_filepath)
@@ -51,23 +52,35 @@ for event in events:
             sum += freq[time]
         square.append(math.pow(sum, 2))
         
-    #plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+    plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
     peak_index = square.index(max(square))
+
+    if i == 352:
+        pass
 
     x=0
     try:
         while True:
-            gradient = square[peak_index-(x-1)] - square[peak_index-x]
-            x-=1
-            if gradient > -1.4 or x == 0: break
-    except:
-        print(f'event {i} has failed')
+            gradient = square[peak_index - (x + 1)] - square[peak_index - x]
+            x += 1
+            if gradient > 0 or (peak_index - x) == 0: break
+    except Exception as error:
+        print(error)
+        plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+        log.append(f'event {i} has failed')
         
     start_sample = int(spec[1][peak_index-x] * sample_rate)
     end_sample = int(start_sample + (0.5 * sample_rate))
     buffer_cropped = buffer[start_sample:end_sample]
-    #spec = Spectrogram().create_spectrgram_from_bufer(buffer_cropped, sample_rate)
-    #Spectrogram().plot_spectrogram(spec[1], spec[0], spec[2][:])
+    spec = Spectrogram().create_spectrgram_from_bufer(buffer_cropped, sample_rate, nfft=2048)
+    square = []
+    for time in range(len(spec[1])):
+        sum = 0
+        for freq in spec[2][:][thresh:]:
+            sum += freq[time]
+        square.append(math.pow(sum, 2))
+    plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+    Spectrogram().plot_spectrogram(spec[1], spec[0], spec[2][:])
 
     filename = '/gunshot_' + str(i) + '_1.wav'
     wav_file = wave.open(config_dict['Gunshot_dataset']+filename, 'wb')
@@ -79,5 +92,5 @@ for event in events:
     print(str(i+1) +'/'+ str(len(events)))
     i+=1
 
-
+print(log)
 Done()

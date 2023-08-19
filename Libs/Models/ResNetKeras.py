@@ -84,7 +84,7 @@ class resnet_base():
         self.model.summary()
 
     @staticmethod
-    def _prep_dataset(dataset_filepath, batch_size = 32, img_height=500, img_width=400):
+    def _prep_dataset(dataset_filepath, batch_size = 32, img_height=244, img_width=244):
       image_data_generator = ImageDataGenerator(validation_split=0.1)
       train_ds = image_data_generator.flow_from_directory(dataset_filepath, target_size=(img_height, img_width), batch_size=batch_size, class_mode='binary', subset='training', seed=123)
       validation_ds = image_data_generator.flow_from_directory(dataset_filepath, target_size=(img_height, img_width), batch_size=batch_size, class_mode='binary', subset='validation', seed=123)
