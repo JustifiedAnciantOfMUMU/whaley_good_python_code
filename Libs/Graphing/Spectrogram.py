@@ -58,18 +58,20 @@ class Spectrogram():
         fig.savefig(os.path.join(dir, filename))
         plt.close('all')
 
-
+class MelSpectrogram():
+    pass
 
 
 if __name__ == '__main__':
 
     dir = os.getcwd()
-    #f, t, _spectrogram = Spectrogram().create_spectrgram((dir + '\\Test Calls\\moan_ex1.wav'))
-    f, t, _spectrogram = Spectrogram().create_spectrgram(r'E:\Thesis\Datasets\Kiresbom_data\data\clips\dataset_A\val\audio\A_149.wav')
-    _spectrogram_log = 10 * np.log10(_spectrogram)
-    _denoised_spectrogram = Spectrogram().denoise_median(_spectrogram_log)
+    f, t, _spectrogram = Spectrogram().create_spectrgram((r'E:\Thesis\Datasets\Gunshot_dataset/gunshot_2_1.wav'), 0.1)
+    #sample_rate, audio_data = wavfile.read(r'E:\Thesis\Datasets\Gunshot_dataset/gunshot_2_1.wav')
+    #f, t, _spectrogram = Spectrogram().create_spectrgram_from_bufer(audio_data, sample_rate)
+    #_spectrogram_log = 10 * np.log10(_spectrogram)
+    _denoised_spectrogram = Spectrogram().denoise_median(_spectrogram)
     Spectrogram().plot_spectrogram(t, f, _denoised_spectrogram)
-    Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, dir+r'\\Libs\Graphing\test', 'spectrogram_test.jpg')
+    #Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, dir+r'\\Libs\Graphing\test', 'spectrogram_test.jpg')
 
     Done()
 

@@ -42,7 +42,7 @@ for event in events:
 
     spec = Spectrogram().create_spectrgram_from_bufer(buffer, sample_rate)
     thresh = 250 #threshold index in array
-    # Spectrogram().plot_spectrogram(spec[1], spec[0][thresh:], spec[2][:][thresh:])
+    #Spectrogram().plot_spectrogram(spec[1], spec[0][thresh:], spec[2][:][thresh:])
 
     #square of time domain across spectrogram
     square = []
