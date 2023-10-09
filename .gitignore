@@ -283,3 +283,7 @@ Libs/Models/Trained_models/230817_resnet50/keras_metadata.pb
 Libs/Models/Trained_models/230817_resnet50/saved_model.pb
 Libs/Models/Trained_models/230817_resnet50/variables/variables.data-00000-of-00001
 Libs/Models/Trained_models/230817_resnet50/variables/variables.index
+*.pb
+*.data-00000-of-00001
+*.index
+Libs/Models/Trained_models/old/checkpoint

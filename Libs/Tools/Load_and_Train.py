@@ -8,35 +8,28 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 from keras.applications import ResNet50, ResNet50V2, VGG16
 
+import matplotlib.pyplot as plt
+import numpy as np, os
+import keras, cv2
+from keras.optimizers import adam
+
 sys.path.append(os.getcwd())
 from Libs.Tools.Done import Done
 from Config.import_config import ConfigDict
 
-config_dict = ConfigDict().dict
-model_name = r'230905_resnet50_gunshot_long'
-epochs = 100
+model_name = '091023_adapted_resnet50_upsweep'
+epochs = 20
 
-#build model
-model = Sequential()
-model.add(ResNet50(include_top = False, pooling = 'avg', classes=1))
-for each_layer in model.layers:
-  each_layer.trainable=False
-model.add(Flatten())
-model.add(Dense(256, activation="relu"))
-model.add(Dense(16, activation="relu"))
-model.add(Dense(1, activation='sigmoid'))
-model.layers[0].trainable = False
-model.summary()
-model.compile(optimizer=Adam(), loss='binary_crossentropy',metrics=['accuracy'])
+model = keras.models.load_model(r'C:\\Users/Jon/Documents/UNI/Thesis/code/Libs/Models/Trained_models/230817_resnet50_upsweep')
+model.compile(optimizer=Adam(0.0001), loss='binary_crossentropy',metrics=['accuracy'])
 
 image_data_generator = ImageDataGenerator()
-train_ds = image_data_generator.flow_from_directory(r'E:\Thesis\Datasets\230905_Gunshot_likeupcall_Dataset\train', target_size=(224, 224), batch_size=32, class_mode='binary', seed=123)
-validation_ds = image_data_generator.flow_from_directory(r'E:\Thesis\Datasets\230905_Gunshot_likeupcall_Dataset\val', target_size=(224, 224), batch_size=32, class_mode='binary', seed=123)
+train_ds = image_data_generator.flow_from_directory(r'E:\Thesis\Datasets\230831_upsweep_spectrogram\train', target_size=(224, 224), batch_size=32, class_mode='binary', seed=123)
+validation_ds = image_data_generator.flow_from_directory(r'E:\Thesis\Datasets\230831_upsweep_spectrogram\val', target_size=(224, 224), batch_size=32, class_mode='binary', seed=123)
 
 filepath = os.getcwd() + r'\Libs\Models\Trained_models\\' + model_name
 mc = ModelCheckpoint(filepath, monitor='val_accuracy', mode='max')
 hs = model.fit(train_ds, validation_data=validation_ds, epochs=epochs, callbacks=[mc])
-print(hs)
 
 accuracy = hs.history['accuracy']
 val_accuracy = hs.history['val_accuracy']
@@ -45,7 +38,3 @@ print(accuracy)
 print('\n/n')
 print(val_accuracy)
 Done()
-
-#remove low snr
-#Check dataset import
-#

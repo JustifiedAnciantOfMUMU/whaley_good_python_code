@@ -10,7 +10,8 @@ def create_config_file():
         "kirsebom_data": r"E:/Thesis/Datasets/Kiresbom_data/data", # https://www.frdr-dfdr.ca/repo/dataset/4a3113e6-1d58-6bb4-aaf2-a9adf75165be
         "resnet50_features_from_kiresbom": r"E:/Thesis/Datasets/Kiresbom_resnet50_features",
         "NOPP_Gunshot_data": r"E:/Thesis/Datasets/NOPP_Gunshot_data",
-        "Gunshot_dataset": r"E:/Thesis/Datasets/Gunshot_dataset"
+        "Gunshot_dataset": r"E:/Thesis/Datasets/Gunshot_dataset",
+        "Gunshot_spectrogram_dataset" : r"E:\Thesis\Datasets\Gunshot_spectrogram_dataset"
         
     }
 

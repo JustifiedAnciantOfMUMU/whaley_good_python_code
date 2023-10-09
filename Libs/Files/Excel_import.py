@@ -9,6 +9,7 @@ class ExcelFile ():
     @staticmethod
     def extract_rows_from_sheet(sheet_name, excel_file) -> None:
         data_dict = {}
+        excel_file = pd.ExcelFile(excel_file)
         sheet = excel_file.parse(sheet_name)
         for index, row in sheet.iterrows():
             data_dict[index] = row.to_dict()

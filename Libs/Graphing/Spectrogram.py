@@ -6,11 +6,11 @@ from Libs.Tools.Done import Done
 
 class Spectrogram():
     @staticmethod
-    def create_spectrgram(audio_filepath, window_size=0.256, nfft=3050):
+    def create_spectrgram(audio_filepath, window_size=0.256, nfft=3050, overlap=0.88):
         sample_rate, audio_data = wavfile.read(audio_filepath)
 
         nperseg = int (window_size * sample_rate)
-        noverlap = (nperseg * 0.88)
+        noverlap = (nperseg * overlap)
         window = np.hamming(nperseg)
         return spectrogram(audio_data, fs=sample_rate, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
     
@@ -19,7 +19,7 @@ class Spectrogram():
         nperseg = int (window_size * sample_rate)
         noverlap = (nperseg * 0.88)
         window = np.hamming(nperseg)
-        return spectrogram(buffer, fs=sample_rate, window=window, nperseg=nperseg, noverlap=noverlap, nfft=nfft)
+        return spectrogram(buffer, fs=sample_rate, window='hamming', nperseg=nperseg, noverlap=noverlap, nfft=nfft)
 
     @staticmethod
     def denoise_median(spectrogram_data):
@@ -32,46 +32,42 @@ class Spectrogram():
         return spectrogram_data_median
 
     @staticmethod
-    def plot_spectrogram(t, f, spectrogram_data):
+    def plot_spectrogram(t, f, spectrogram_data, lowerthresh=0, upperthresh=1000):
         plt.figure()
         plt.pcolormesh(t, f, spectrogram_data, shading='auto')
         plt.xlabel('Time (s)'), plt.ylabel('Frequency (Hz)')
-        plt.ylim(0, 1000)
+        plt.ylim(lowerthresh, upperthresh)
         plt.colorbar(label='Power Spectral Density (dB/Hz)')
         plt.title('Spectrogram')
         plt.show()
         #plt.close('all')
 
     @staticmethod
-    def save_spectrogram(t, f, spectrogram_data, dir, filename):
+    def save_spectrogram(t, f, spectrogram_data, dir, filename, lowerthresh=0, upperthresh=400):
         plt.ioff()
         fig = plt.figure(frameon=False)
         fig.set_size_inches(2.24, 2.24)
         #print(fig.dpi)
+        
         ax = fig.add_axes([0, 0, 1, 1])
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         ax.spines['left'].set_visible(False)
         ax.spines['bottom'].set_visible(False)
         ax.pcolormesh(t, f, spectrogram_data, shading='auto')
-        ax.set_ylim(0, 400)
-        fig.savefig(os.path.join(dir, filename))
+        ax.set_ylim(lowerthresh, upperthresh)
+        fp = dir + filename
+        fig.savefig(fp)
         plt.close('all')
-
-class MelSpectrogram():
-    pass
-
 
 if __name__ == '__main__':
 
     dir = os.getcwd()
-    f, t, _spectrogram = Spectrogram().create_spectrgram((r'E:\Thesis\Datasets\Gunshot_dataset/gunshot_2_1.wav'), 0.1)
-    #sample_rate, audio_data = wavfile.read(r'E:\Thesis\Datasets\Gunshot_dataset/gunshot_2_1.wav')
-    #f, t, _spectrogram = Spectrogram().create_spectrgram_from_bufer(audio_data, sample_rate)
-    #_spectrogram_log = 10 * np.log10(_spectrogram)
-    _denoised_spectrogram = Spectrogram().denoise_median(_spectrogram)
-    Spectrogram().plot_spectrogram(t, f, _denoised_spectrogram)
-    #Spectrogram().save_spectrogram(t, f, _denoised_spectrogram, dir+r'\\Libs\Graphing\test', 'spectrogram_test.jpg')
+    f, t, _spectrogram = Spectrogram().create_spectrgram(r'E:/Thesis/Datasets/Kiresbom_data/data/clips/dataset_A/train/audio/A_64.wav')
+    _spectrogram_log = 10 * np.log10(_spectrogram)
+    _denoised_spectrogram = Spectrogram().denoise_median(_spectrogram_log)
+    Spectrogram().plot_spectrogram(t, f, _denoised_spectrogram, 0, 500)
+    #Spectrogram().save_spectrogram(t, f, _spectrogram, r'C:\Users\Jon\Documents\UNI\Thesis\Figures', r'\gunshot_0.5saudio.png', lowerthresh=200)
 
     Done()
 
@@ -113,7 +109,7 @@ if __name__ == '__main__':
     # plt.title('Spectrogram - median')
     # #plt.show()
 
-    """PCEN denoising"""
+    #"""PCEN denoising"""
     # s = 0.025 # smoothing coefficent
     # M = spectrogram_data_log
     # epsilon = 10**-6 # small arbitary constant

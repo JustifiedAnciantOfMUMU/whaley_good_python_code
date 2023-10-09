@@ -15,7 +15,6 @@ duration_max=0
 for file in files:
     _dict[file], duration = NOPP_mat_import(config_dict['NOPP_Gunshot_data'] + "/" + file)
     duration_max = max(duration_max, duration)
-
 events = []
 for file in files:
     
@@ -52,35 +51,37 @@ for event in events:
             sum += freq[time]
         square.append(math.pow(sum, 2))
         
-    plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+    #plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
     peak_index = square.index(max(square))
 
-    if i == 352:
-        pass
-
-    x=0
-    try:
-        while True:
-            gradient = square[peak_index - (x + 1)] - square[peak_index - x]
-            x += 1
-            if gradient > 0 or (peak_index - x) == 0: break
-    except Exception as error:
-        print(error)
-        plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
-        log.append(f'event {i} has failed')
+    # x=0
+    # try:
+    #     while True:
+    #         gradient = square[peak_index - (x + 1)] - square[peak_index - x]
+    #         x += 1
+    #         if gradient > 0 or (peak_index - x) == 0: break
+    # except Exception as error:
+    #     print(error)
+    #     plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+    #     log.append(f'event {i} has failed')
         
-    start_sample = int(spec[1][peak_index-x] * sample_rate)
-    end_sample = int(start_sample + (0.5 * sample_rate))
+    # start_sample = int(spec[1][peak_index-x] * sample_rate)
+    # end_sample = int(start_sample + (0.5 * sample_rate))
+
+    start_sample = int((spec[1][peak_index] - 0.2) * sample_rate)
+    end_sample = start_sample + int(0.5 * sample_rate)
     buffer_cropped = buffer[start_sample:end_sample]
-    spec = Spectrogram().create_spectrgram_from_bufer(buffer_cropped, sample_rate, nfft=2048)
+    #spec = Spectrogram().create_spectrgram_from_bufer(buffer_cropped, sample_rate, 0.05, nfft=2048)
     square = []
     for time in range(len(spec[1])):
         sum = 0
         for freq in spec[2][:][thresh:]:
             sum += freq[time]
         square.append(math.pow(sum, 2))
-    plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
-    Spectrogram().plot_spectrogram(spec[1], spec[0], spec[2][:])
+    #plot([spec[1]], [square], ['plot'], ['Time', 'power level'])
+    #_spectrogram_log = 10 * np.log10(spec[2])
+    #_denoised_spectrogram = Spectrogram().denoise_median(_spectrogram_log)
+    #Spectrogram().plot_spectrogram(spec[1], spec[0], _denoised_spectrogram)
 
     filename = '/gunshot_' + str(i) + '_1.wav'
     wav_file = wave.open(config_dict['Gunshot_dataset']+filename, 'wb')
